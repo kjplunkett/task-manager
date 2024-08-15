@@ -1,19 +1,12 @@
-from flask import Flask, request, make_response
+from flask import Blueprint, request
 
-app = Flask(__name__)
+task_blueprint = Blueprint("task", __name__)
 
+# In memory state
 data = {}
 
 
-@app.route("/tasks", methods=["GET"])
-def tasks():
-    """
-    Display a list of tasks
-    """
-    return list(data.values()), 200
-
-
-@app.route("/task", methods=["POST", "DELETE", "PUT"])
+@task_blueprint.route("/task", methods=["POST", "DELETE", "PUT"])
 def task():
     """
     Handle task create, delete, and update operations
@@ -36,4 +29,12 @@ def task():
     # Handle task delete
     elif request.method == "DELETE":
         del data[task_data["id"]]
-        return make_response("", 204)
+        return "", 204
+
+
+@task_blueprint.route("/tasks", methods=["GET"])
+def tasks():
+    """
+    Display a list of tasks
+    """
+    return list(data.values()), 200
