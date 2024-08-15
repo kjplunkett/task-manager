@@ -28,8 +28,9 @@ poe test
 
 ## TODO
 
-- [ ] Flask API - CRUDL operations (in memory with a dictionary for state)
-- [ ] Add persistence with SQLite
-- [ ] Add React frontend with Bootstrap styles
-- [ ] Add Tests
+- [x] Flask API w/ CRUDL operations (in memory)
+- [x] Add API tests
+- [ ] Add SQLAlchemy models, connection, and queries w/ SQLite db
+- [ ] Add React frontend w/ Bootstrap styles
+- [ ] Add Frontend tests
 - [ ] Deploy
