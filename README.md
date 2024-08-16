@@ -1,6 +1,8 @@
 # Task Manager
 
-Preview: https://northspyre-take-home.fly.dev/
+Demo: https://northspyre-take-home.fly.dev/
+
+<img alt="image" src="https://github.com/user-attachments/assets/7fa70582-b28e-43b0-9bdf-368577b2a935">
 
 ## Development
 
