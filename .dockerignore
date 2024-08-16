@@ -9,3 +9,4 @@ poetry.lock
 README.*
 package-lock.json
 node_modules
+.github
