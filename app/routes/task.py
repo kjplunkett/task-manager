@@ -20,7 +20,7 @@ def create_task():
     # Create a DB session
     session = db.session()
 
-    # Serialize the task_data into a model instance (performs schema validation)
+    # Serialize the task_data into a model instance
     task_instance = task_schema.load(task_data, session=session)
 
     # Persist the task instance to the db
@@ -35,6 +35,7 @@ def create_task():
 
     # Return the task with HTTP 201 Created
     return task_response, 201
+
 
 @task_blueprint.route("/task/<int:task_id>", methods=["PUT"])
 def update_task(task_id):
@@ -52,14 +53,12 @@ def update_task(task_id):
 
     # Handle no existing task with that id found
     if not task_instance:
-        error_message = {'message': f'Task ID: {task_id} not found.'}
+        error_message = {"message": f"Task ID: {task_id} not found."}
         return error_message, 404
 
     # Serialize the task_data into a new model instance
     updated_task_instance = task_schema.load(
-        task_data,
-        session=session,
-        instance=task_instance
+        task_data, session=session, instance=task_instance
     )
 
     # Persist the new instance to the db
@@ -74,6 +73,7 @@ def update_task(task_id):
     # Return the task with HTTP 200 Success
     return task_response, 200
 
+
 @task_blueprint.route("/task/<int:task_id>", methods=["DELETE"])
 def delete_task(task_id):
     """
@@ -82,12 +82,12 @@ def delete_task(task_id):
     # Create a DB session
     session = db.session()
 
-    # Serialize the task_data into a model instance (performs schema validation)
+    # Get the task instance by id
     task_instance = session.query(Task).filter(Task.id == task_id).first()
 
     # Handle no existing task with that id found
     if not task_instance:
-        error_message = {'message': f'Task ID: {task_id} not found.'}
+        error_message = {"message": f"Task ID: {task_id} not found."}
         return error_message, 404
 
     # Delete the task from the db
@@ -95,7 +95,8 @@ def delete_task(task_id):
     session.commit()
 
     # Return no content HTTP 204
-    return '', 204
+    return "", 204
+
 
 @task_blueprint.route("/tasks", methods=["GET"])
 def list_tasks():

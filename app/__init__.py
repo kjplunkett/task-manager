@@ -8,7 +8,7 @@ def create_app():
     # Initialize the Flask app
     app = Flask(__name__)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///:memory:'
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # Initialize the db
@@ -19,7 +19,7 @@ def create_app():
 
     with app.app_context():
         # Import models within app context
-        from app.db.models import Task
+        from app.db.models import Task  # noqa: F401
 
         # Create initial tables from models
         db.create_all()

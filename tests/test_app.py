@@ -23,10 +23,10 @@ def test_task_post(client):
     # Assert the response is 201 created and the new task data is returned
     new_task = res.json
     assert res.status_code == 201
-    assert new_task['id'] == 1
-    assert new_task['title'] == 'foo'
-    assert new_task['description'] == 'bar'
-    assert new_task['completed'] == False
+    assert new_task["id"] == 1
+    assert new_task["title"] == "foo"
+    assert new_task["description"] == "bar"
+    assert new_task["completed"] is False
 
     # Assert we have 1 task now
     all_tasks = client.get("/tasks").json
@@ -43,7 +43,7 @@ def test_task_put(client):
         "description": "buz",
     }
     res = client.post("/task", json=task)
-    task_id = res.json['id']
+    task_id = res.json["id"]
 
     # Update the task title
     task["title"] = "new title"
@@ -51,7 +51,7 @@ def test_task_put(client):
 
     # Assert the title was updated
     assert res.status_code == 200
-    assert res.json['title'] == 'new title'
+    assert res.json["title"] == "new title"
 
 
 def test_task_delete(client):
@@ -63,8 +63,8 @@ def test_task_delete(client):
         "title": "hello",
         "description": "world",
     }
-    res =client.post("/task", json=task)
-    task_id = res.json['id']
+    res = client.post("/task", json=task)
+    task_id = res.json["id"]
 
     # Assert we have 1 task
     all_tasks = client.get("/tasks").json
