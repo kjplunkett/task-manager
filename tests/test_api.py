@@ -1,9 +1,10 @@
 def test_tasks_get(client):
     """
-    Test listing tasks
+    Test listing no tasks
     """
     res = client.get("/tasks")
     data = res.json
+
     assert data == []
     assert res.status_code == 200
 
@@ -12,22 +13,20 @@ def test_task_post(client):
     """
     Test creating a new task
     """
-    # Assert we have 0 tasks to start
-    all_tasks = client.get("/tasks").json
-    assert len(all_tasks) == 0
-
     # Create a task
     task = {
-        "id": "1",
         "title": "foo",
         "description": "bar",
-        "completed": False,
     }
     res = client.post("/task", json=task)
 
-    # Assert the response is 201 created and the task data is returned
+    # Assert the response is 201 created and the new task data is returned
+    new_task = res.json
     assert res.status_code == 201
-    assert res.json == task
+    assert new_task['id'] == 1
+    assert new_task['title'] == 'foo'
+    assert new_task['description'] == 'bar'
+    assert new_task['completed'] == False
 
     # Assert we have 1 task now
     all_tasks = client.get("/tasks").json
@@ -40,28 +39,19 @@ def test_task_put(client):
     """
     # Create a task
     task = {
-        "id": "1",
-        "title": "foo",
-        "description": "bar",
-        "completed": False,
+        "title": "fiz",
+        "description": "buz",
     }
-    client.post("/task", json=task)
-
-    # Assert we have 1 task
-    all_tasks = client.get("/tasks").json
-    assert len(all_tasks) == 1
+    res = client.post("/task", json=task)
+    task_id = res.json['id']
 
     # Update the task title
-    task["title"] = "buz"
-    res = client.put("/task", json=task)
+    task["title"] = "new title"
+    res = client.put(f"/task/{task_id}", json=task)
 
-    # Assert the response is 200 and the updated task is returned
+    # Assert the title was updated
     assert res.status_code == 200
-    assert res.json == task
-
-    # Assert only the updated task exists
-    all_tasks = client.get("/tasks").json
-    assert all_tasks == [task]
+    assert res.json['title'] == 'new title'
 
 
 def test_task_delete(client):
@@ -70,19 +60,18 @@ def test_task_delete(client):
     """
     # Create a task
     task = {
-        "id": "1",
-        "title": "foo",
-        "description": "bar",
-        "completed": False,
+        "title": "hello",
+        "description": "world",
     }
-    client.post("/task", json=task)
+    res =client.post("/task", json=task)
+    task_id = res.json['id']
 
     # Assert we have 1 task
     all_tasks = client.get("/tasks").json
     assert len(all_tasks) == 1
 
     # Delete the task
-    res = client.delete("/task", json={"id": "1"})
+    res = client.delete(f"/task/{task_id}")
 
     # Assert we get an empty 204 response
     assert res.status_code == 204

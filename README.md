@@ -26,14 +26,14 @@ Test:
 poe test
 ```
 
-Run the API server on port 8000:
+Start the API server:
 ```shell
 poe start
 ```
 
-Visit the URL in your browser and you should get a 200 response with an empty JSON array (no tasks yet)
+Vist the URL in your browser to get a 200 response with an empty JSON array (no tasks yet)
 ```shell
-http://localhost:8000/tasks
+http://127.0.0.1:5000/tasks
 ```
 
 ## TODO
@@ -41,7 +41,7 @@ http://localhost:8000/tasks
 - [x] Flask API w/ CRUDL operations (in memory)
 - [x] Add API tests
 - [x] Add SQLAlchemy connection for SQLite DB 
-- [ ] Add SQLAlchemy models and queries, connection, and queries w/ SQLite db
+- [x] Add SQLAlchemy models and queries, connection, and queries w/ SQLite db
 - [ ] Add React frontend w/ Bootstrap styles
 - [ ] Add Frontend tests
 - [ ] Deploy
