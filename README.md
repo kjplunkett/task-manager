@@ -60,7 +60,7 @@ npm start
 
 - [x] Flask API w/ CRUDL operations (in memory)
 - [x] Add API tests
-- [x] Add SQLAlchemy connection for SQLite DB 
-- [x] Add SQLAlchemy models and queries, connection, and queries w/ SQLite db
+- [x] Add SQLAlchemy + SQLite DB 
+- [x] Add models + validation & serialization
 - [x] Add React frontend w/ Bootstrap styles
 - [x] Deploy (Github Actions to Fly.io)
