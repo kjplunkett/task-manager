@@ -11,6 +11,7 @@ python = "^3.12"
 flask = "^3.0.3"
 flask-sqlalchemy = "^3.1.1"
 marshmallow-sqlalchemy = "^1.1.0"
+pyuwsgi = "^2.0.26"
 
 [tool.poe.tasks]
 lint = "flake8" # Lint with Flake8

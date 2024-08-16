@@ -1,0 +1,8 @@
+services:
+  app:
+    build: .
+    command: ["/task-app/.venv/bin/flask", "run", "--debug", "--host=0.0.0.0", "--port=8080"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
