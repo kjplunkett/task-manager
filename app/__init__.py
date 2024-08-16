@@ -17,7 +17,7 @@ def create_app():
     db.init_app(app)
 
     # Register Task API routes
-    app.register_blueprint(task_blueprint)
+    app.register_blueprint(task_blueprint, url_prefix="/api/v1/")
 
     with app.app_context():
         # Import models within app context

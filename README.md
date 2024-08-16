@@ -60,5 +60,5 @@ npm start
 - [x] Add API tests
 - [x] Add SQLAlchemy connection for SQLite DB 
 - [x] Add SQLAlchemy models and queries, connection, and queries w/ SQLite db
-- [ ] Add React frontend w/ Bootstrap styles
+- [x] Add React frontend w/ Bootstrap styles
 - [x] Deploy (Github Actions to Fly.io)
