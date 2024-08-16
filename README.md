@@ -1,7 +1,10 @@
 # Task Manager
 
+Preview: https://northspyre-take-home.fly.dev/
+
 ## Development
 
+### Backend
 Prerequisites:
 - [Poetry](https://python-poetry.org/) installed
 - [Poe The Poet](https://poethepoet.natn.io/) installed
@@ -33,7 +36,22 @@ poe start
 
 Vist the URL in your browser to get a 200 response with an empty JSON array (no tasks yet)
 ```shell
-http://127.0.0.1:5000/tasks
+http://127.0.0.1:8080/tasks
+```
+
+### Frontend
+
+Prerequisites:
+- [Node 20](https://nodejs.org/en/download/package-manager) installed
+
+Install Node dependencies:
+```shell
+npm i
+```
+
+Start the webpack dev server:
+```shell
+npm start
 ```
 
 ## TODO
