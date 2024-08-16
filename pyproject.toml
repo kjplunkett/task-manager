@@ -17,7 +17,7 @@ pyuwsgi = "^2.0.26"
 lint = "flake8" # Lint with Flake8
 format = "black ." # Format with Black
 test = "pytest --cov=app tests/" # Test with pytest and pytest-cov
-start = "flask --app app --debug run" # Start the API server
+start = "flask --app app run --debug --host=0.0.0.0 --port=8080" # Start the API server
 
 [tool.poetry.group.test.dependencies]
 pytest = "^8.3.2"

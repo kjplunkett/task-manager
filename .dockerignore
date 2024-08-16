@@ -7,3 +7,5 @@ poetry.lock
 .coverage
 .idea
 README.*
+package-lock.json
+node_modules
